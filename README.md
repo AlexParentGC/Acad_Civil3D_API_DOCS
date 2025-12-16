@@ -1,3 +1,4 @@
+(Version francaise dans /fr)
 # AutoCAD and Civil3D API Object Reference
 
 ## Quick Navigation
