@@ -1,0 +1,669 @@
+<mxfile host="app.diagrams.net" modified="2025-12-15T16:28:00.000Z" agent="5.0" version="24.0.0">
+  <diagram name="AutoCAD and Civil3D API Object Model" id="autocad-civil3d-api">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="AutoCAD and Civil3D .NET API Object Model Hierarchy" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="800" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- AutoCAD API Section Title -->
+        <mxCell id="autocad-title" value="AutoCAD .NET API" style="text;html=1;strokeColor=#3c78d8;fillColor=#6fa8dc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=18;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- UI Components Group -->
+        <mxCell id="ui-group" value="UI Components" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="160" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Ribbon -->
+        <mxCell id="ribbon" value="Ribbon" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5a6bd;strokeColor=#a64d79;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="app-ribbon" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="app" target="ribbon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- PaletteSet -->
+        <mxCell id="paletteset" value="PaletteSet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5a6bd;strokeColor=#a64d79;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="230" width="160" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ContextMenu -->
+        <mxCell id="contextmenu" value="ContextMenu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5a6bd;strokeColor=#a64d79;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- StatusBar -->
+        <mxCell id="statusbar" value="StatusBar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5a6bd;strokeColor=#a64d79;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="330" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- SystemDialogs -->
+        <mxCell id="systemdialogs" value="SystemDialogs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5a6bd;strokeColor=#a64d79;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Editor -->
+        <mxCell id="editor" value="Editor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="330" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="doc-editor" value="1:1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="doc" target="editor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Application Object -->
+        <mxCell id="app" value="Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="150" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- DocumentManager -->
+        <mxCell id="docmgr" value="DocumentManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="240" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="app-docmgr" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="app" target="docmgr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Document -->
+        <mxCell id="doc" value="Document" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="330" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="docmgr-doc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="docmgr" target="doc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Database -->
+        <mxCell id="db" value="Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9cb9c;strokeColor=#b45f06;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="420" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="doc-db" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="doc" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- DBDictionary -->
+        <mxCell id="dbdictionary" value="DBDictionary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9cb9c;strokeColor=#b45f06;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="420" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="db-dbdictionary" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="db" target="dbdictionary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- XRecord -->
+        <mxCell id="xrecord" value="XRecord" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9cb9c;strokeColor=#b45f06;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="470" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dbobject-xrecord" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="xrecord" target="dbobject">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="490" as="sourcePoint" />
+            <mxPoint x="470" y="655" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490" y="490" />
+              <mxPoint x="490" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Symbol Tables Branch -->
+        <mxCell id="symboltables" value="Symbol Tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=13;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="db-symboltables" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="db" target="symboltables">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- BlockTable -->
+        <mxCell id="blocktable" value="BlockTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="630" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-blocktable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="blocktable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- LayerTable -->
+        <mxCell id="layertable" value="LayerTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="690" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-layertable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="layertable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- LinetypeTable -->
+        <mxCell id="linetypetable" value="LinetypeTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="750" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-linetypetable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="linetypetable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TextStyleTable -->
+        <mxCell id="textstyletable" value="TextStyleTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="810" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-textstyletable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="textstyletable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DimStyleTable -->
+        <mxCell id="dimstyletable" value="DimStyleTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="870" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-dimstyletable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="dimstyletable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- UcsTable -->
+        <mxCell id="ucstable" value="UcsTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="930" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-ucstable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="ucstable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ViewTable -->
+        <mxCell id="viewtable" value="ViewTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="990" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-viewtable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="viewtable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ViewportTable -->
+        <mxCell id="viewporttable" value="ViewportTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1050" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-viewporttable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="viewporttable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- RegAppTable -->
+        <mxCell id="regapptable" value="RegAppTable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1110" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="symboltables-regapptable" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="symboltables" target="regapptable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- BlockTableRecord -->
+        <mxCell id="blocktablerecord" value="BlockTableRecord" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c27ba0;strokeColor=#6c3483;fontSize=12;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="540" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="db-blocktablerecord" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="db" target="blocktablerecord">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DBObject Hierarchy -->
+        <mxCell id="dbobject" value="DBObject" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="630" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="blocktablerecord-dbobject" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="blocktablerecord" target="dbobject">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Entity -->
+        <mxCell id="entity" value="Entity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=13;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="720" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dbobject-entity" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="entity" target="dbobject">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Curve -->
+        <mxCell id="curve" value="Curve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="810" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-curve" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="curve" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Line -->
+        <mxCell id="line" value="Line" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="880" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-line" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="line" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Arc -->
+        <mxCell id="arc" value="Arc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="930" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-arc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="arc" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Circle -->
+        <mxCell id="circle" value="Circle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="980" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-circle" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="circle" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Polyline -->
+        <mxCell id="polyline" value="Polyline (Lightweight)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1030" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-polyline" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="polyline" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Polyline2d -->
+        <mxCell id="polyline2d" value="Polyline2d" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1080" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-polyline2d" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="polyline2d" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Polyline3d -->
+        <mxCell id="polyline3d" value="Polyline3d" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1130" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-polyline3d" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="polyline3d" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Ellipse -->
+        <mxCell id="ellipse" value="Ellipse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1180" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-ellipse" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="ellipse" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Spline -->
+        <mxCell id="spline" value="Spline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1230" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="curve-spline" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="spline" target="curve">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 3D Entities Group -->
+        <!-- Body -->
+        <mxCell id="body" value="Body" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1280" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-body" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="body" target="entity">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="1297" />
+              <mxPoint x="500" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Region -->
+        <mxCell id="region" value="Region" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1330" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-region" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="region" target="entity">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="1347" />
+              <mxPoint x="500" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Solid3d -->
+        <mxCell id="solid3d" value="Solid3d" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1380" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-solid3d" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="solid3d" target="entity">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="1397" />
+              <mxPoint x="500" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- SubDMesh -->
+        <mxCell id="subdmesh" value="SubDMesh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="520" y="1430" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-subdmesh" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="subdmesh" target="entity">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="1447" />
+              <mxPoint x="500" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- BlockReference -->
+        <mxCell id="blockreference" value="BlockReference" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="810" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-blockreference" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="blockreference" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- DBText -->
+        <mxCell id="dbtext" value="DBText" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="870" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-dbtext" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="dbtext" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- MText -->
+        <mxCell id="mtext" value="MText" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="920" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-mtext" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="mtext" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Dimension -->
+        <mxCell id="dimension" value="Dimension" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="970" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-dimension" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="dimension" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Hatch -->
+        <mxCell id="hatch" value="Hatch" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="1020" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-hatch" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="hatch" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Leader -->
+        <mxCell id="leader" value="Leader" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="1070" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-leader" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="leader" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- MLeader -->
+        <mxCell id="mleader" value="MLeader" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="1120" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-mleader" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="mleader" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Viewport -->
+        <mxCell id="viewport" value="Viewport" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="310" y="1170" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-viewport" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="viewport" target="entity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Civil3D API Section Title -->
+        <mxCell id="civil3d-title" value="Civil3D .NET API" style="text;html=1;strokeColor=#bf9000;fillColor=#ffd966;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=18;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="80" width="700" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- CivilApplication -->
+        <mxCell id="civilapp" value="CivilApplication" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="150" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- CivilDocument -->
+        <mxCell id="civildoc" value="CivilDocument" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9cb9c;strokeColor=#b45f06;fontSize=14;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="240" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="civilapp-civildoc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="civilapp" target="civildoc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Collections from CivilDocument -->
+        <mxCell id="collections-label" value="Collections (ObjectIdCollection)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=2;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="320" width="160" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Site -->
+        <mxCell id="site" value="Site" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="360" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civildoc-site" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="civildoc" target="site">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Civil3D Entity Base -->
+        <mxCell id="civil-entity-base" value="Civil3D Entity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c27ba0;strokeColor=#6c3483;fontSize=13;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="360" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="civildoc-civilentity" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="civildoc" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Feature -->
+        <mxCell id="feature" value="Feature" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c27ba0;strokeColor=#6c3483;fontSize=12;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="450" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-feature" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="feature" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Parcel (under Feature, in Alignment column) -->
+        <mxCell id="parcel" value="Parcel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="590" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="feature-parcel" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="parcel" target="feature">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="site-parcel" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="site" target="parcel">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Alignment -->
+        <mxCell id="alignment" value="Alignment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="540" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="feature-alignment" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="alignment" target="feature">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="site-alignment" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="site" target="alignment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Surface -->
+        <mxCell id="surface" value="Surface (Base)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1010" y="540" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-surface" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="surface" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TinSurface -->
+        <mxCell id="tinsurface" value="TinSurface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1010" y="610" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="surface-tinsurface" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="tinsurface" target="surface">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- GridSurface -->
+        <mxCell id="gridsurface" value="GridSurface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1010" y="660" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="surface-gridsurface" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="gridsurface" target="surface">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TinVolumeSurface -->
+        <mxCell id="tinvolumesurface" value="TinVolumeSurface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1010" y="710" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="surface-tinvolumesurface" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="tinvolumesurface" target="surface">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- GridVolumeSurface -->
+        <mxCell id="gridvolumesurface" value="GridVolumeSurface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1010" y="760" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="surface-gridvolumesurface" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="gridvolumesurface" target="surface">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- CogoPoint -->
+        <mxCell id="cogopoint" value="CogoPoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1180" y="540" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-cogopoint" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="cogopoint" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Profile -->
+        <mxCell id="profile" value="Profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1350" y="540" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="feature-profile" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="profile" target="feature">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Network (Pipe Network) -->
+        <mxCell id="network" value="Network&#xa;(Pipe Network)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=12;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="650" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="civildoc-network" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="civildoc" target="network">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Pipe -->
+        <mxCell id="pipe" value="Pipe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="730" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="network-pipe" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="network" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Structure -->
+        <mxCell id="structure" value="Structure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="780" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="network-structure" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="network" target="structure">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- PartsList -->
+        <mxCell id="partslist" value="PartsList" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=11;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="840" y="830" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="network-partslist" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;" edge="1" parent="1" source="network" target="partslist">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Corridor -->
+        <mxCell id="corridor" value="Corridor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1350" y="610" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-corridor" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="corridor" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Assemblies -->
+        <mxCell id="assembly" value="Assembly" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1350" y="680" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-assembly" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="assembly" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Catchment -->
+        <mxCell id="catchment" value="Catchment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1350" y="750" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-catchment" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="catchment" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Grading -->
+        <mxCell id="grading" value="Grading" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1180" y="610" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-grading" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="grading" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- FeatureLine -->
+        <mxCell id="featureline" value="FeatureLine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1180" y="680" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="feature-featureline" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="featureline" target="feature">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- SampleLine -->
+        <mxCell id="sampleline" value="SampleLine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=12;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1180" y="750" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="civilentity-sampleline" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="sampleline" target="civil-entity-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Styles and Settings -->
+        <mxCell id="styles-settings" value="Styles &amp; Settings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c27ba0;strokeColor=#6c3483;fontSize=12;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="1110" y="900" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="civildoc-styles" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="civildoc" target="styles-settings">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1600" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-app" value="Application/Document" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6aa84f;strokeColor=#38761d;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1640" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-db" value="Database/Core" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9cb9c;strokeColor=#b45f06;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1680" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-symboltable" value="Symbol Tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#bf9000;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1720" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-entity" value="Entities (Graphical)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea9999;strokeColor=#cc0000;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1760" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-container" value="Container/Collection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c27ba0;strokeColor=#6c3483;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1800" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-civil" value="Civil3D Objects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6fa8dc;strokeColor=#3c78d8;fontSize=10;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="40" y="1840" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-inherit" value="Inheritance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="1895" as="sourcePoint" />
+            <mxPoint x="140" y="1895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="legend-contains" value="Contains/Uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;dashed=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="1925" as="sourcePoint" />
+            <mxPoint x="140" y="1925" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Notes -->
+        <!-- Notes -->
+        <mxCell id="notes" value="Notes:&#xa;• AutoCAD API: Application → Document → Database → Entities&#xa;• Civil3D API: CivilApplication → CivilDocument → Civil3D Objects&#xa;• Civil3D inherits from AutoCAD's base Entity class&#xa;• All objects accessed via ObjectId and Transactions" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="840" y="1600" width="400" height="100" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
