@@ -1,192 +1,192 @@
-# AutoCAD and Civil3D .NET API - Object Acquisition Workflow
+# API .NET AutoCAD et Civil3D - Workflow d'Acquisition d'Objets
 
-This document provides a comprehensive workflow for accessing all object types in the AutoCAD and Civil3D .NET API object model tree using C#.
+Ce document fournit un flux de travail complet pour accéder à tous les types d'objets dans l'arborescence du modèle d'objet de l'API .NET AutoCAD et Civil3D en utilisant C#.
 
-## Table of Contents
-- [AutoCAD API Workflow](#autocad-api-workflow)
-- [Civil3D API Workflow](#civil3d-api-workflow)
-- [Common Patterns](#common-patterns)
-- [Best Practices](#best-practices)
+## Table des Matières
+- [Workflow API AutoCAD](#workflow-api-autocad)
+- [Workflow API Civil3D](#workflow-api-civil3d)
+- [Modèles Communs](#modèles-communs)
+- [Meilleures Pratiques](#meilleures-pratiques)
 
 ---
 
-## AutoCAD API Workflow
+## Workflow API AutoCAD
 
-### 1. Accessing the Application
+### 1. Accéder à l'Application
 
 ```csharp
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 
-// Get the current AutoCAD application
+// Obtenir l'application AutoCAD actuelle
 Application acApp = Application.DocumentManager.MdiActiveDocument.Application;
 ```
 
-### 2. Accessing Documents
+### 2. Accéder aux Documents
 
 ```csharp
-// Get the Document Manager
+// Obtenir le gestionnaire de documents
 DocumentCollection docMgr = Application.DocumentManager;
 
-// Get the active document
+// Obtenir le document actif
 Document acDoc = docMgr.MdiActiveDocument;
 
-// Or iterate through all open documents
+// Ou itérer à travers tous les documents ouverts
 foreach (Document doc in docMgr)
 {
-    // Work with each document
+    // Travailler avec chaque document
 }
 ```
 
-### 3. Accessing the Database
+### 3. Accéder à la Base de Données
 
 ```csharp
-// Get the database from the active document
+// Obtenir la base de données du document actif
 Database db = acDoc.Database;
 
-// Or get the working database
+// Ou obtenir la base de données de travail
 Database workingDb = HostApplicationServices.WorkingDatabase;
 ```
 
-### 4. Accessing Symbol Tables
+### 4. Accéder aux Tables de Symboles
 
-All symbol table access follows a similar pattern using transactions:
+Tout accès aux tables de symboles suit un modèle similaire utilisant des transactions :
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
-    // BlockTable
+    // BlockTable (Table des blocs)
     BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
     
-    // LayerTable
+    // LayerTable (Table des calques)
     LayerTable lt = tr.GetObject(db.LayerTableId, OpenMode.ForRead) as LayerTable;
     
-    // LinetypeTable
+    // LinetypeTable (Table des types de ligne)
     LinetypeTable ltt = tr.GetObject(db.LinetypeTableId, OpenMode.ForRead) as LinetypeTable;
     
-    // TextStyleTable
+    // TextStyleTable (Table des styles de texte)
     TextStyleTable tst = tr.GetObject(db.TextStyleTableId, OpenMode.ForRead) as TextStyleTable;
     
-    // DimStyleTable
+    // DimStyleTable (Table des styles de cote)
     DimStyleTable dst = tr.GetObject(db.DimStyleTableId, OpenMode.ForRead) as DimStyleTable;
     
-    // UcsTable
+    // UcsTable (Table des SCU)
     UcsTable ut = tr.GetObject(db.UcsTableId, OpenMode.ForRead) as UcsTable;
     
-    // ViewTable
+    // ViewTable (Table des vues)
     ViewTable vt = tr.GetObject(db.ViewTableId, OpenMode.ForRead) as ViewTable;
     
-    // ViewportTable
+    // ViewportTable (Table des fenêtres)
     ViewportTable vpt = tr.GetObject(db.ViewportTableId, OpenMode.ForRead) as ViewportTable;
     
-    // RegAppTable (Registered Applications)
+    // RegAppTable (Applications Enregistrées)
     RegAppTable rat = tr.GetObject(db.RegAppTableId, OpenMode.ForRead) as RegAppTable;
     
     tr.Commit();
 }
 ```
 
-### 5. Accessing BlockTableRecords and Entities
+### 5. Accéder aux BlockTableRecords et aux Entités
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
     BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
     
-    // Access Model Space
+    // Accéder à l'Espace Objet (Model Space)
     BlockTableRecord modelSpace = tr.GetObject(bt[BlockTableRecord.ModelSpace], 
         OpenMode.ForRead) as BlockTableRecord;
     
-    // Access Paper Space
+    // Accéder à l'Espace Papier (Paper Space)
     BlockTableRecord paperSpace = tr.GetObject(bt[BlockTableRecord.PaperSpace], 
         OpenMode.ForRead) as BlockTableRecord;
     
-    // Iterate through entities in Model Space
+    // Itérer à travers les entités de l'Espace Objet
     foreach (ObjectId objId in modelSpace)
     {
         Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
         
-        // Check entity type and cast appropriately
+        // Vérifier le type d'entité et caster de manière appropriée
         if (ent is Line line)
         {
-            // Work with line
+            // Travailler avec une ligne
         }
         else if (ent is Arc arc)
         {
-            // Work with arc
+            // Travailler avec un arc
         }
         else if (ent is Circle circle)
         {
-            // Work with circle
+            // Travailler avec un cercle
         }
         else if (ent is Polyline pline)
         {
-            // Work with lightweight polyline
+            // Travailler avec une polyligne légère
         }
         else if (ent is Polyline2d pline2d)
         {
-            // Work with 2D polyline
+            // Travailler avec une polyligne 2D
         }
         else if (ent is Polyline3d pline3d)
         {
-            // Work with 3D polyline
+            // Travailler avec une polyligne 3D
         }
         else if (ent is Ellipse ellipse)
         {
-            // Work with ellipse
+            // Travailler avec une ellipse
         }
         else if (ent is Spline spline)
         {
-            // Work with spline
+            // Travailler avec une spline
         }
         else if (ent is BlockReference blockRef)
         {
-            // Work with block reference
+            // Travailler avec une référence de bloc
         }
         else if (ent is DBText dbText)
         {
-            // Work with single-line text
+            // Travailler avec un texte sur une ligne
         }
         else if (ent is MText mText)
         {
-            // Work with multi-line text
+            // Travailler avec un texte multi-lignes
         }
         else if (ent is Dimension dim)
         {
-            // Work with dimension
+            // Travailler avec une cote
         }
         else if (ent is Hatch hatch)
         {
-            // Work with hatch
+            // Travailler avec des hachures
         }
         else if (ent is Leader leader)
         {
-            // Work with leader
+            // Travailler avec une ligne de repère
         }
         else if (ent is MLeader mLeader)
         {
-            // Work with multileader
+            // Travailler avec un multi-repère
         }
         else if (ent is Solid3d solid)
         {
-            // Work with 3D solid
+            // Travailler avec un solide 3D
         }
         else if (ent is Region region)
         {
-            // Work with region
+            // Travailler avec une région
         }
         else if (ent is Body body)
         {
-            // Work with body
+            // Travailler avec un corps
         }
         else if (ent is SubDMesh mesh)
         {
-            // Work with subdivision mesh
+            // Travailler avec un maillage de subdivision
         }
         else if (ent is Viewport viewport)
         {
-            // Work with viewport
+            // Travailler avec une fenêtre
         }
     }
     
@@ -194,9 +194,9 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
 }
 ```
 
-### 6. Working with Curve Objects
+### 6. Travailler avec les Objets Courbe (Curve)
 
-All curve-based entities inherit from the `Curve` class:
+Toutes les entités basées sur des courbes héritent de la classe `Curve` :
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
@@ -209,12 +209,12 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
         
         if (ent is Curve curve)
         {
-            // Common curve properties and methods
+            // Propriétés et méthodes communes aux courbes
             double length = curve.GetDistanceAtParameter(curve.EndParam);
             Point3d startPoint = curve.StartPoint;
             Point3d endPoint = curve.EndPoint;
             
-            // Get point at parameter
+            // Obtenir un point à un paramètre donné
             Point3d midPoint = curve.GetPointAtParameter(
                 (curve.StartParam + curve.EndParam) / 2);
         }
@@ -224,29 +224,29 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
 }
 ```
 
-### 7. Accessing UI Components
+### 7. Accéder aux Composants de l'Interface Utilisateur (UI)
 
 ```csharp
-using Autodesk.Windows; // For Ribbon
-using Autodesk.AutoCAD.Windows; // For PaletteSet
+using Autodesk.Windows; // Pour le Ruban (Ribbon)
+using Autodesk.AutoCAD.Windows; // Pour PaletteSet
 
-// Accessing the Ribbon
+// Accéder au Ruban
 RibbonControl ribbon = ComponentManager.Ribbon;
 if (ribbon != null)
 {
-    // Work with ribbon tabs and panels
+    // Travailler avec les onglets et panneaux du ruban
 }
 
-// Creating a PaletteSet
-PaletteSet ps = new PaletteSet("My Palette");
-ps.Add("My Control", new System.Windows.Forms.UserControl());
+// Créer un PaletteSet
+PaletteSet ps = new PaletteSet("Ma Palette");
+ps.Add("Mon Contrôle", new System.Windows.Forms.UserControl());
 ps.Visible = true;
 
-// Accessing the Editor
+// Accéder à l'Éditeur
 Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;
 ```
 
-### 8. Creating Ribbon Elements
+### 8. Créer des Éléments de Ruban
 
 ```csharp
 using Autodesk.Windows;
@@ -257,39 +257,39 @@ public void CreateRibbon()
     RibbonControl ribbon = ComponentManager.Ribbon;
     if (ribbon == null) return;
 
-    // 1. Create a Tab
+    // 1. Créer un Onglet
     RibbonTab tab = new RibbonTab();
-    tab.Title = "My Custom Tab";
+    tab.Title = "Mon Onglet Personnalisé";
     tab.Id = "MY_CUSTOM_TAB_ID";
     ribbon.Tabs.Add(tab);
 
-    // 2. Create a Panel
+    // 2. Créer un Panneau
     RibbonPanelSource panelSource = new RibbonPanelSource();
-    panelSource.Title = "My Panel";
+    panelSource.Title = "Mon Panneau";
     RibbonPanel panel = new RibbonPanel();
     panel.Source = panelSource;
     tab.Panels.Add(panel);
 
-    // 3. Create a Button
+    // 3. Créer un Bouton
     RibbonButton button = new RibbonButton();
-    button.Text = "My Button";
+    button.Text = "Mon Bouton";
     button.ShowText = true;
     button.ShowImage = true;
-    // button.Image = ... (Load BitmapImage)
+    // button.Image = ... (Charger BitmapImage)
     button.Size = RibbonItemSize.Large;
     button.Orientation = System.Windows.Controls.Orientation.Vertical;
 
-    // 4. Assign Command Handler
+    // 4. Assigner un Gestionnaire de Commande
     button.CommandHandler = new RibbonCommandHandler();
-    button.CommandParameter = "MY_COMMAND "; // Space at end to execute
+    button.CommandParameter = "MY_COMMAND "; // Espace à la fin pour exécuter
 
     panelSource.Items.Add(button);
     
-    // Set tab as active (optional)
+    // Définir l'onglet comme actif (optionnel)
     tab.IsActive = true;
 }
 
-// Command Handler Implementation
+// Implémentation du Gestionnaire de Commande
 public class RibbonCommandHandler : System.Windows.Input.ICommand
 {
     public bool CanExecute(object parameter) => true;
@@ -300,7 +300,7 @@ public class RibbonCommandHandler : System.Windows.Input.ICommand
     {
         if (parameter is string cmd)
         {
-            // Send command to AutoCAD
+            // Envoyer la commande à AutoCAD
             Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument
                 .SendStringToExecute(cmd, true, false, true);
         }
@@ -308,22 +308,22 @@ public class RibbonCommandHandler : System.Windows.Input.ICommand
 }
 ```
 
-### 9. Working with Database Objects
+### 9. Travailler avec les Objets de Base de Données
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
-    // Accessing the Named Objects Dictionary
+    // Accéder au Dictionnaire d'Objets Nommés (Named Objects Dictionary - NOD)
     DBDictionary nod = tr.GetObject(db.NamedObjectsDictionaryId, OpenMode.ForRead) as DBDictionary;
     
-    // Check for a specific dictionary
+    // Vérifier la présence d'un dictionnaire spécifique
     if (nod.Contains("ACAD_GROUP"))
     {
         ObjectId groupId = nod.GetAt("ACAD_GROUP");
         DBDictionary groupDict = tr.GetObject(groupId, OpenMode.ForRead) as DBDictionary;
     }
     
-    // Accessing XRecords (e.g., in Extension Dictionary)
+    // Accéder aux XRecords (par exemple, dans le dictionnaire d'extension)
     Entity ent = tr.GetObject(entityId, OpenMode.ForRead) as Entity;
     if (ent.ExtensionDictionary != ObjectId.Null)
     {
@@ -333,21 +333,22 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
             XRecord xRec = tr.GetObject(extDict.GetAt("MyData"), OpenMode.ForRead) as XRecord;
             foreach (TypedValue tv in xRec.Data)
             {
-                // Process data
+                // Traiter les données
             }
         }
     }
     
     tr.Commit();
 }
+```
 
-### 10. Working with XData
+### 10. Travailler avec XData
 
-Extended Entity Data (XData) allows you to attach custom application data to entities.
+Les Données Étendues (Extended Entity Data - XData) vous permettent d'attacher des données d'application personnalisées aux entités.
 
-#### 1. Registering an Application
+#### 1. Enregistrer une Application
 
-Before attaching XData, you must register your application name in the `RegAppTable`.
+Avant d'attacher des XData, vous devez enregistrer le nom de votre application dans la `RegAppTable`.
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
@@ -368,9 +369,9 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
 }
 ```
 
-#### 2. Attaching XData
+#### 2. Attacher des XData
 
-Use `ResultBuffer` and `DxfCode` to store data. The first value **must** be the registered application name (DxfCode 1001).
+Utilisez `ResultBuffer` et `DxfCode` pour stocker les données. La première valeur **doit** être le nom de l'application enregistrée (DxfCode 1001).
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
@@ -379,7 +380,7 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
     
     ResultBuffer rb = new ResultBuffer(
         new TypedValue((int)DxfCode.ExtendedDataRegAppName, "MyApp"),
-        new TypedValue((int)DxfCode.ExtendedDataAsciiString, "Custom Value"),
+        new TypedValue((int)DxfCode.ExtendedDataAsciiString, "Valeur Personnalisée"),
         new TypedValue((int)DxfCode.ExtendedDataReal, 123.45)
     );
     
@@ -390,21 +391,21 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
 }
 ```
 
-#### 3. Reading XData
+#### 3. Lire des XData
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
     Entity ent = tr.GetObject(entityId, OpenMode.ForRead) as Entity;
     
-    // Get XData specifically for your app
+    // Obtenir les XData spécifiquement pour votre application
     ResultBuffer rb = ent.GetXDataForApplication("MyApp");
     
     if (rb != null)
     {
         foreach (TypedValue tv in rb)
         {
-            // Process data based on TypeCode
+            // Traiter les données selon le TypeCode
             if (tv.TypeCode == (int)DxfCode.ExtendedDataAsciiString)
             {
                 string value = (string)tv.Value;
@@ -416,63 +417,62 @@ using (Transaction tr = db.TransactionManager.StartTransaction())
     tr.Commit();
 }
 ```
-```
 
 ---
 
-## Civil3D API Workflow
+## Workflow API Civil3D
 
-### 1. Accessing the CivilApplication
+### 1. Accéder à CivilApplication
 
 ```csharp
 using Autodesk.Civil.ApplicationServices;
 using Autodesk.Civil.DatabaseServices;
 
-// Get the Civil Application
+// Obtenir l'application Civil
 CivilApplication civilApp = CivilApplication.ActiveDocument.Application;
 ```
 
-### 2. Accessing the CivilDocument
+### 2. Accéder à CivilDocument
 
 ```csharp
-// Get the active Civil document
+// Obtenir le document Civil actif
 CivilDocument civilDoc = CivilApplication.ActiveDocument;
 
-// Or from AutoCAD document
+// Ou depuis un document AutoCAD
 Document acDoc = Application.DocumentManager.MdiActiveDocument;
 CivilDocument civilDoc = CivilDocument.GetCivilDocument(acDoc.Database);
 ```
 
-### 3. Accessing Civil3D Object Collections
+### 3. Accéder aux Collections d'Objets Civil3D
 
-All Civil3D objects are accessed via `ObjectIdCollection`:
+Tous les objets Civil3D sont accessibles via `ObjectIdCollection` :
 
 ```csharp
 using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
 {
-    // Alignments
+    // Alignments (Alignements)
     ObjectIdCollection alignmentIds = civilDoc.GetAlignmentIds();
     foreach (ObjectId alignId in alignmentIds)
     {
         Alignment alignment = tr.GetObject(alignId, OpenMode.ForRead) as Alignment;
-        // Work with alignment
+        // Travailler avec l'alignement
     }
 
-    // Sites and Parcels
+    // Sites et Parcelles
     ObjectIdCollection siteIds = civilDoc.GetSiteIds();
     foreach (ObjectId siteId in siteIds)
     {
         Site site = tr.GetObject(siteId, OpenMode.ForRead) as Site;
         
-        // Get Parcels in this Site
+        // Obtenir les parcelles dans ce site
         ObjectIdCollection parcelIds = site.GetParcelIds();
         foreach (ObjectId parcelId in parcelIds)
         {
             Parcel parcel = tr.GetObject(parcelId, OpenMode.ForRead) as Parcel;
-            // Work with parcel
+            // Travailler avec la parcelle
         }
         
-        // Use site.GetAlignmentIds() for site-specific alignments
+        // Utiliser site.GetAlignmentIds() pour les alignements spécifiques au site
     }
     
     // Surfaces
@@ -481,97 +481,97 @@ using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
     {
         Surface surface = tr.GetObject(surfId, OpenMode.ForRead) as Surface;
         
-        // Check surface type
+        // Vérifier le type de surface
         if (surface is TinSurface tinSurf)
         {
-            // Work with TIN surface
+            // Travailler avec une surface TIN
         }
         else if (surface is GridSurface gridSurf)
         {
-            // Work with Grid surface
+            // Travailler avec une surface Grille
         }
         else if (surface is TinVolumeSurface tinVolSurf)
         {
-            // Work with TIN Volume surface
+            // Travailler avec une surface volumique TIN
         }
         else if (surface is GridVolumeSurface gridVolSurf)
         {
-            // Work with Grid Volume surface
+            // Travailler avec une surface volumique Grille
         }
     }
     
-    // CogoPoints
+    // Points COGO
     ObjectIdCollection cogoPointIds = civilDoc.CogoPoints.GetPointIds();
     foreach (ObjectId pointId in cogoPointIds)
     {
         CogoPoint cogoPoint = tr.GetObject(pointId, OpenMode.ForRead) as CogoPoint;
-        // Work with COGO point
+        // Travailler avec le point COGO
     }
     
-    // Pipe Networks
+    // Pipe Networks (Réseaux de canalisations)
     ObjectIdCollection networkIds = civilDoc.GetPipeNetworkIds();
     foreach (ObjectId networkId in networkIds)
     {
         Network network = tr.GetObject(networkId, OpenMode.ForRead) as Network;
         
-        // Get pipes in network
+        // Obtenir les tuyaux du réseau
         ObjectIdCollection pipeIds = network.GetPipeIds();
         foreach (ObjectId pipeId in pipeIds)
         {
             Pipe pipe = tr.GetObject(pipeId, OpenMode.ForRead) as Pipe;
-            // Work with pipe
+            // Travailler avec le tuyau
         }
         
-        // Get structures in network
+        // Obtenir les structures du réseau
         ObjectIdCollection structureIds = network.GetStructureIds();
         foreach (ObjectId structId in structureIds)
         {
             Structure structure = tr.GetObject(structId, OpenMode.ForRead) as Structure;
-            // Work with structure
+            // Travailler avec la structure
         }
     }
     
-    // Corridors
+    // Corridors (Projets routiers)
     ObjectIdCollection corridorIds = civilDoc.GetCorridorIds();
     foreach (ObjectId corridorId in corridorIds)
     {
         Corridor corridor = tr.GetObject(corridorId, OpenMode.ForRead) as Corridor;
-        // Work with corridor
+        // Travailler avec le corridor
     }
     
-    // Assemblies
+    // Assemblies (Profils types)
     ObjectIdCollection assemblyIds = civilDoc.GetAssemblyIds();
     foreach (ObjectId assemblyId in assemblyIds)
     {
         Assembly assembly = tr.GetObject(assemblyId, OpenMode.ForRead) as Assembly;
-        // Work with assembly
+        // Travailler avec l'assemblage
     }
     
-    // Catchments
+    // Catchments (Bassins versants)
     ObjectIdCollection catchmentIds = civilDoc.GetCatchmentIds();
     foreach (ObjectId catchmentId in catchmentIds)
     {
         Catchment catchment = tr.GetObject(catchmentId, OpenMode.ForRead) as Catchment;
-        // Work with catchment
+        // Travailler avec le bassin versant
     }
     
-    // Gradings
+    // Gradings (Nivrelements)
     ObjectIdCollection gradingIds = civilDoc.GetGradingIds();
     foreach (ObjectId gradingId in gradingIds)
     {
         Grading grading = tr.GetObject(gradingId, OpenMode.ForRead) as Grading;
-        // Work with grading
+        // Travailler avec le nivellement
     }
     
-    // Feature Lines
+    // Feature Lines (Lignes caractéristiques)
     ObjectIdCollection featureLineIds = civilDoc.GetFeatureLineIds();
     foreach (ObjectId featureLineId in featureLineIds)
     {
         FeatureLine featureLine = tr.GetObject(featureLineId, OpenMode.ForRead) as FeatureLine;
-        // Work with feature line
+        // Travailler avec la ligne caractéristique
     }
     
-    // Sample Lines
+    // Sample Lines (Lignes de profil en travers)
     ObjectIdCollection sampleLineIds = civilDoc.GetSampleLineGroupIds();
     foreach (ObjectId sampleLineGroupId in sampleLineIds)
     {
@@ -582,7 +582,7 @@ using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
         foreach (ObjectId sampleLineId in sampleLineIds2)
         {
             SampleLine sampleLine = tr.GetObject(sampleLineId, OpenMode.ForRead) as SampleLine;
-            // Work with sample line
+            // Travailler avec la ligne de profil en travers
         }
     }
     
@@ -590,7 +590,7 @@ using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
 }
 ```
 
-### 4. Accessing Profiles (Associated with Alignments)
+### 4. Accéder aux Profils (Associés aux Alignements)
 
 ```csharp
 using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
@@ -601,20 +601,20 @@ using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
     {
         Alignment alignment = tr.GetObject(alignId, OpenMode.ForRead) as Alignment;
         
-        // Get profile views
+        // Obtenir les vues de profil
         ObjectIdCollection profileViewIds = alignment.GetProfileViewIds();
         
         foreach (ObjectId pvId in profileViewIds)
         {
             ProfileView profileView = tr.GetObject(pvId, OpenMode.ForRead) as ProfileView;
             
-            // Get profiles in this view
+            // Obtenir les profils dans cette vue
             ObjectIdCollection profileIds = profileView.GetProfileIds();
             
             foreach (ObjectId profId in profileIds)
             {
                 Profile profile = tr.GetObject(profId, OpenMode.ForRead) as Profile;
-                // Work with profile
+                // Travailler avec le profil
             }
         }
     }
@@ -623,58 +623,58 @@ using (Transaction tr = civilDoc.Database.TransactionManager.StartTransaction())
 }
 ```
 
-### 5. Accessing Styles and Settings
+### 5. Accéder aux Styles et Paramètres
 
 ```csharp
-// Access Civil3D Styles
+// Accéder aux Styles Civil3D
 CivilDocument civilDoc = CivilApplication.ActiveDocument;
 
-// Alignment styles
+// Styles d'alignement
 ObjectIdCollection alignmentStyleIds = civilDoc.Styles.AlignmentStyles;
 
-// Surface styles
+// Styles de surface
 ObjectIdCollection surfaceStyleIds = civilDoc.Styles.SurfaceStyles;
 
-// Profile styles
+// Styles de profil
 ObjectIdCollection profileStyleIds = civilDoc.Styles.ProfileStyles;
 
-// Pipe network styles
+// Styles de réseau de canalisations
 ObjectIdCollection pipeStyleIds = civilDoc.Styles.PipeStyles;
 ObjectIdCollection structureStyleIds = civilDoc.Styles.StructureStyles;
 
-// Access Civil3D Settings
+// Accéder aux Paramètres Civil3D
 SettingsAlignment alignmentSettings = civilDoc.Settings.AlignmentSettings;
 SettingsSurface surfaceSettings = civilDoc.Settings.SurfaceSettings;
 ```
 
 ---
 
-## Common Patterns
+## Modèles Communs
 
-### Transaction Pattern (CRITICAL)
+### Modèle de Transaction (CRITIQUE)
 
-**Always use transactions** when accessing database objects:
+**Utilisez toujours des transactions** lors de l'accès aux objets de la base de données :
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
     try
     {
-        // Get and work with objects
+        // Obtenir et travailler avec les objets
         
-        tr.Commit(); // Commit changes
+        tr.Commit(); // Valider les changements
     }
     catch (System.Exception ex)
     {
-        // Handle exception
-        tr.Abort(); // Rollback on error
+        // Gérer l'exception
+        tr.Abort(); // Annuler en cas d'erreur
     }
 }
 ```
 
-### Document Lock Pattern
+### Modèle de Verrouillage de Document
 
-For commands that modify the drawing, lock the document:
+Pour les commandes qui modifient le dessin, verrouillez le document :
 
 ```csharp
 Document acDoc = Application.DocumentManager.MdiActiveDocument;
@@ -684,142 +684,142 @@ using (DocumentLock docLock = acDoc.LockDocument())
 {
     using (Transaction tr = db.TransactionManager.StartTransaction())
     {
-        // Modify objects here
+        // Modifier les objets ici
         
         tr.Commit();
     }
 }
 ```
 
-### Editor Access Pattern
+### Modèle d'Accès à l'Éditeur
 
-For user interaction:
+Pour l'interaction utilisateur :
 
 ```csharp
 Document acDoc = Application.DocumentManager.MdiActiveDocument;
 Editor ed = acDoc.Editor;
 
-// Prompt for selection
+// Demander une sélection
 PromptSelectionResult selResult = ed.GetSelection();
 if (selResult.Status == PromptStatus.OK)
 {
     SelectionSet selSet = selResult.Value;
-    // Work with selection
+    // Travailler avec la sélection
 }
 
-// Write messages
-ed.WriteMessage("\nMessage to command line");
+// Écrire des messages
+ed.WriteMessage("\nMessage sur la ligne de commande");
 ```
 
 ---
 
-## Best Practices
+## Meilleures Pratiques
 
-### 1. Always Use Transactions
-Never access database objects without a transaction.
+### 1. Toujours Utiliser des Transactions
+N'accédez jamais aux objets de la base de données sans transaction.
 
-### 2. Use `using` Statements
-Ensure proper disposal of transactions and other disposable objects.
+### 2. Utiliser les Instructions `using`
+Assurez-vous de disposer correctement des transactions et autres objets disposables.
 
-### 3. Check for Null
-Always check if objects exist before using them:
+### 3. Vérifier les Null
+Vérifiez toujours si les objets existent avant de les utiliser :
 
 ```csharp
 Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
 if (ent != null)
 {
-    // Work with entity
+    // Travailler avec l'entité
 }
 ```
 
-### 4. Use Appropriate OpenMode
-- `OpenMode.ForRead` - When only reading data
-- `OpenMode.ForWrite` - When modifying objects
+### 4. Utiliser le Mode d'Ouverture (OpenMode) Approprié
+- `OpenMode.ForRead` - Pour lire les données seulement
+- `OpenMode.ForWrite` - Pour modifier les objets
 
 ```csharp
-// Reading
+// Lecture
 Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
 
-// Modifying
+// Modification
 Entity ent = tr.GetObject(objId, OpenMode.ForWrite) as Entity;
-ent.ColorIndex = 1; // Modify property
+ent.ColorIndex = 1; // Modifier la propriété
 ```
 
-### 5. Upgrade Open Mode When Needed
+### 5. Mettre à Niveau le Mode d'Ouverture si Nécessaire
 
 ```csharp
 Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
-// Later need to modify
+// Besoin de modifier plus tard
 ent.UpgradeOpen();
 ent.ColorIndex = 1;
 ```
 
-### 6. Handle ObjectId Collections Efficiently
+### 6. Gérer les Collections d'ObjectId Efficacement
 
 ```csharp
-// Good - iterate directly
+// Bon - itérer directement
 foreach (ObjectId objId in collection)
 {
     Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
 }
 
-// Also good - convert to array if needed multiple times
+// Aussi bon - convertir en tableau si nécessaire plusieurs fois
 ObjectId[] objIds = collection.Cast<ObjectId>().ToArray();
 ```
 
-### 7. Use Type Checking with Pattern Matching (C# 7.0+)
+### 7. Utiliser la Vérification de Type avec Pattern Matching (C# 7.0+)
 
 ```csharp
 if (ent is Line line)
 {
-    // Use 'line' variable directly
+    // Utiliser la variable 'line' directement
     double length = line.Length;
 }
 ```
 
-### 8. Error Handling
+### 8. Gestion des Erreurs
 
 ```csharp
 using (Transaction tr = db.TransactionManager.StartTransaction())
 {
     try
     {
-        // Your code here
+        // Votre code ici
         tr.Commit();
     }
     catch (Autodesk.AutoCAD.Runtime.Exception ex)
     {
-        ed.WriteMessage($"\nAutoCAD Error: {ex.Message}");
+        ed.WriteMessage($"\nErreur AutoCAD : {ex.Message}");
         tr.Abort();
     }
     catch (System.Exception ex)
     {
-        ed.WriteMessage($"\nGeneral Error: {ex.Message}");
+        ed.WriteMessage($"\nErreur Générale : {ex.Message}");
         tr.Abort();
     }
 }
 ```
 
-### 9. Working with Both AutoCAD and Civil3D
+### 9. Travailler avec AutoCAD et Civil3D
 
 ```csharp
-// Check if Civil3D is available
+// Vérifier si Civil3D est disponible
 bool isCivil3D = CivilApplication.ActiveDocument != null;
 
 if (isCivil3D)
 {
     CivilDocument civilDoc = CivilApplication.ActiveDocument;
-    // Work with Civil3D objects
+    // Travailler avec les objets Civil3D
 }
 else
 {
-    // Work with AutoCAD objects only
+    // Travailler avec les objets AutoCAD seulement
 }
 ```
 
 ---
 
-## Complete Example: Scanning All Objects
+## Exemple Complet : Scanner Tous les Objets
 
 ```csharp
 [CommandMethod("SCANALL")]
@@ -833,46 +833,46 @@ public void ScanAllObjects()
     {
         try
         {
-            // Scan AutoCAD entities
+            // Scanner les entités AutoCAD
             BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
             BlockTableRecord modelSpace = tr.GetObject(bt[BlockTableRecord.ModelSpace], 
                 OpenMode.ForRead) as BlockTableRecord;
             
-            ed.WriteMessage("\n=== AutoCAD Entities ===");
+            ed.WriteMessage("\n=== Entités AutoCAD ===");
             foreach (ObjectId objId in modelSpace)
             {
                 Entity ent = tr.GetObject(objId, OpenMode.ForRead) as Entity;
                 ed.WriteMessage($"\n{ent.GetType().Name}");
             }
             
-            // Scan Civil3D objects (if available)
+            // Scanner les objets Civil3D (si disponible)
             CivilDocument civilDoc = CivilDocument.GetCivilDocument(db);
             if (civilDoc != null)
             {
-                ed.WriteMessage("\n\n=== Civil3D Objects ===");
+                ed.WriteMessage("\n\n=== Objets Civil3D ===");
                 
-                // Alignments
+                // Alignements
                 foreach (ObjectId alignId in civilDoc.GetAlignmentIds())
                 {
                     Alignment align = tr.GetObject(alignId, OpenMode.ForRead) as Alignment;
-                    ed.WriteMessage($"\nAlignment: {align.Name}");
+                    ed.WriteMessage($"\nAlignement : {align.Name}");
                 }
                 
                 // Surfaces
                 foreach (ObjectId surfId in civilDoc.GetSurfaceIds())
                 {
                     Surface surf = tr.GetObject(surfId, OpenMode.ForRead) as Surface;
-                    ed.WriteMessage($"\nSurface: {surf.Name} ({surf.GetType().Name})");
+                    ed.WriteMessage($"\nSurface : {surf.Name} ({surf.GetType().Name})");
                 }
                 
-                // Add more Civil3D object types as needed...
+                // Ajouter plus de types d'objets Civil3D au besoin...
             }
             
             tr.Commit();
         }
         catch (System.Exception ex)
         {
-            ed.WriteMessage($"\nError: {ex.Message}");
+            ed.WriteMessage($"\nErreur : {ex.Message}");
             tr.Abort();
         }
     }
@@ -881,8 +881,8 @@ public void ScanAllObjects()
 
 ---
 
-## References
+## Références
 
-- [AutoCAD .NET Developer's Guide](https://help.autodesk.com/view/OARX/2024/ENU/)
-- [Civil3D .NET API Reference](https://help.autodesk.com/view/CIV3D/2024/ENU/)
-- [ObjectARX SDK Documentation](https://www.autodesk.com/developer-network/platform-technologies/autocad)
+- [Guide du Développeur AutoCAD .NET](https://help.autodesk.com/view/OARX/2024/ENU/)
+- [Référence API Civil3D .NET](https://help.autodesk.com/view/CIV3D/2024/ENU/)
+- [Documentation SDK ObjectARX](https://www.autodesk.com/developer-network/platform-technologies/autocad)

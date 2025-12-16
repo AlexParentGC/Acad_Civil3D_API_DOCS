@@ -1,117 +1,133 @@
 # StatusBar Class
 
 ## Overview
-The `StatusBar` functions allow plugins to display information in the main AutoCAD application window's status bar (bottom right). You can add custom panes (icons/text) or control the progress meter to show operation status.
+The `StatusBar` class provides access to AutoCAD's status bar for displaying messages and progress indicators.
 
 ## Namespace
-`Autodesk.AutoCAD.Windows` / `Autodesk.AutoCAD.Runtime`
+`Autodesk.AutoCAD.ApplicationServices`
 
-## Key Classes
-- `Application.StatusBar` (Access point)
-- `StatusBarItem` (Legacy/Pane control)
-- `ProgressMeter` (Long operation feedback)
+## Inheritance Hierarchy
+```
+System.Object
+  └─ StatusBar
+```
+
+## Key Methods
+
+| Method | Return Type | Description |
+|--------|-------------|-------------|
+| `SetMessageString(string)` | `void` | Sets the status bar message |
+| `SetProgressMeter(string)` | `void` | Sets progress meter text |
+| `SetProgressMeterLimit(int)` | `void` | Sets progress meter maximum value |
+| `SetProgressMeterPos(int)` | `void` | Sets progress meter position |
+| `ShowProgressMeter()` | `void` | Shows the progress meter |
+| `HideProgressMeter()` | `void` | Hides the progress meter |
 
 ## Code Examples
 
-### Example 1: Using the Progress Meter
+### Example 1: Simple Status Message
 ```csharp
-public void ProcessHeavyData()
+using Autodesk.AutoCAD.ApplicationServices;
+
+StatusBar statusBar = Application.StatusBar;
+
+statusBar.SetMessageString("Processing data...");
+
+// Do work
+System.Threading.Thread.Sleep(2000);
+
+statusBar.SetMessageString("Complete!");
+```
+
+### Example 2: Progress Meter
+```csharp
+using Autodesk.AutoCAD.ApplicationServices;
+
+StatusBar statusBar = Application.StatusBar;
+
+// Set up progress meter
+statusBar.SetProgressMeterLimit(100);
+statusBar.ShowProgressMeter();
+
+for (int i = 0; i <= 100; i++)
 {
-    ProgressMeter pm = new ProgressMeter();
-    pm.Start("Processing entities...");
-    pm.SetLimit(100);
-
-    for (int i = 0; i < 100; i++)
-    {
-        System.Threading.Thread.Sleep(50); // Simulate work
-        pm.MeterProgress();
-        System.Windows.Forms.Application.DoEvents(); // Keep UI responsive (Use carefully)
-    }
-
-    pm.Stop();
+    statusBar.SetProgressMeterPos(i);
+    statusBar.SetMessageString($"Processing: {i}%");
+    
+    // Do work
+    System.Threading.Thread.Sleep(50);
 }
+
+statusBar.HideProgressMeter();
+statusBar.SetMessageString("Processing complete!");
 ```
 
-### Example 2: Adding a Status Bar Pane
+### Example 3: Progress with Custom Range
 ```csharp
-// NOTE: Status Bar customization API varies significantly by version.
-// Modern AutoCAD (2015+) restricts adding arbitrary panes compared to older versions.
-// The raw API usually involves the StatusBarItem class.
+using Autodesk.AutoCAD.ApplicationServices;
 
-/*
-StatusBarItem item = new StatusBarItem();
-item.Text = "MyPlugin Active";
-item.ToolTipText = "Plugin Status";
-item.Icon = ...;
-Application.StatusBar.Panes.Add(item);
-*/
-```
+StatusBar statusBar = Application.StatusBar;
 
-### Example 3: Updating Pane Text
-```csharp
-/*
-item.Text = "Updated Status";
-item.Update(); // Refresh UI
-*/
-```
+int totalItems = 250;
+statusBar.SetProgressMeterLimit(totalItems);
+statusBar.ShowProgressMeter();
 
-### Example 4: Handling Pane Clicks
-```csharp
-/*
-item.MouseDown += (s, e) => 
+for (int i = 0; i < totalItems; i++)
 {
-    Application.ShowAlertDialog("You clicked the status pane!");
-};
-*/
-```
-
-### Example 5: Basic Status Text
-```csharp
-// Simplest way to show status is writing to Command Line, not Status Bar
-Application.DocumentManager.MdiActiveDocument.Editor.WriteMessage("\nDone.");
-
-// But you can also set the 'MODEMACRO' system variable which displays text in the bottom left
-Application.SetSystemVariable("MODEMACRO", "MyPlugin Configured");
-```
-
-### Example 6: Progress Meter Cancellation
-```csharp
-// Check for user cancellation (Escape key) manually during loops
-if (HostApplicationServices.Current.UserBreak())
-{
-    pm.Stop();
-    throw new Exception("Cancelled by user");
+    statusBar.SetProgressMeterPos(i);
+    statusBar.SetMessageString($"Processing item {i + 1} of {totalItems}");
+    
+    // Process item
 }
+
+statusBar.HideProgressMeter();
+statusBar.SetMessageString($"Processed {totalItems} items");
 ```
 
-### Example 7: Nested Progress
+### Example 4: Progress with Try-Finally
 ```csharp
-// AutoCAD only supports ONE active progress meter at a time.
-// Do not try to nest them.
-```
+using Autodesk.AutoCAD.ApplicationServices;
 
-### Example 8: Cleaning Up
-```csharp
-// Always call Stop() in a finally block to ensure the meter disappears
-// even if code crashes.
+StatusBar statusBar = Application.StatusBar;
+
 try
 {
-    pm.Start("Working...");
-    // work
+    statusBar.SetProgressMeterLimit(100);
+    statusBar.ShowProgressMeter();
+    
+    for (int i = 0; i <= 100; i++)
+    {
+        statusBar.SetProgressMeterPos(i);
+        
+        // Do work that might throw exception
+        
+        if (i == 50)
+        {
+            // Simulate error
+            throw new System.Exception("Error at 50%");
+        }
+    }
+}
+catch (System.Exception ex)
+{
+    statusBar.SetMessageString($"Error: {ex.Message}");
 }
 finally
 {
-    pm.Stop(); // Hides the bar
+    // Always hide progress meter
+    statusBar.HideProgressMeter();
 }
 ```
 
 ## Best Practices
-1. **Use `try/finally` for Progress**: Failing to stop the progress meter can leave it stuck on the screen until restart.
-2. **MODEMACRO**: For simple text feedback, setting the `MODEMACRO` variable is far easier and more reliable than creating custom StatusBar panes.
-3. **Responsiveness**: The progress meter only updates if the UI thread pumps messages. In tight loops, you might need `DoEvents` (use sparingly) or run logic on a background thread (advanced).
+
+1. **Always Hide Progress Meter**: Use try-finally to ensure progress meter is hidden even if an error occurs
+2. **Update Frequency**: Don't update too frequently (causes flickering), update every 1-5% is usually sufficient
+3. **Clear Messages**: Set a final message when operation completes
+4. **User Feedback**: Provide meaningful messages that describe what's happening
 
 ## Related Objects
-- [Application](../Core/Application.md)
+- [Application](Application.md) - Provides access to StatusBar
 
 ## References
-- [Autodesk Runtime Namespace](https://help.autodesk.com/view/OARX/2024/ENU/?guid=OARX-ManagedRefGuide-Autodesk_AutoCAD_Runtime)
+- [Autodesk Official Documentation](https://help.autodesk.com/view/OARX/2024/ENU/?guid=OARX-ManagedRefGuide-Autodesk_AutoCAD_ApplicationServices_StatusBar)
