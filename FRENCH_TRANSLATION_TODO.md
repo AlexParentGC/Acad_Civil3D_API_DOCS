@@ -135,19 +135,19 @@ Maintain identical structure to English:
 ### Statistics
 - **Total Files:** 15
 - **Total Lines:** ~2,100
-- **Completed:** 0/15 (0%)
-- **Remaining:** 15/15 (100%)
+- **Completed:** 15/15 (100%) ✅
+- **Remaining:** 0/15 (0%)
 
 ### By Category
 | Category | Files | Lines | Status |
 |----------|-------|-------|--------|
-| NURBS Curves | 2 | ~330 | ⬜ Pending |
-| Elliptical Arcs | 2 | ~260 | ⬜ Pending |
-| 3D Primitives | 4 | ~580 | ⬜ Pending |
-| Rays | 2 | ~160 | ⬜ Pending |
-| Splines | 4 | ~470 | ⬜ Pending |
-| NURBS Surface | 1 | ~200 | ⬜ Pending |
-| **TOTAL** | **15** | **~2,100** | **⬜ 0%** |
+| NURBS Curves | 2 | ~330 | ✅ Complete |
+| Elliptical Arcs | 2 | ~260 | ✅ Complete |
+| 3D Primitives | 4 | ~580 | ✅ Complete |
+| Rays | 2 | ~160 | ✅ Complete |
+| Splines | 4 | ~470 | ✅ Complete |
+| NURBS Surface | 1 | ~200 | ✅ Complete |
+| **TOTAL** | **15** | **~2,100** | **✅ 100%** |
 
 ---
 
@@ -203,5 +203,6 @@ After translation, verify:
 
 ---
 
-**Last Updated:** 2025-12-16  
-**Status:** Ready for translation
+**Last Updated:** 2025-12-17  
+**Status:** ✅ Complete - All 15 files translated
+
