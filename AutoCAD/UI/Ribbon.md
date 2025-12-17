@@ -6,6 +6,119 @@ The Ribbon API allows developers to programmatically customize the AutoCAD Ribbo
 > [!IMPORTANT]
 > **AdWindows.dll Required**: To use these features, you must add a reference to `AdWindows.dll` found in the AutoCAD installation directory.
 
+## Referencing AdWindows.dll
+
+### Overview
+`AdWindows.dll` is **not** included in the standard AutoCAD .NET API NuGet packages. It must be referenced directly from the AutoCAD installation directory. **Do not copy this DLL to your project** - instead, reference it from the AutoCAD installation with `Copy Local = False`.
+
+### Step-by-Step: Adding the Reference
+
+#### Visual Studio 2022
+
+1. **Right-click on your project** in Solution Explorer
+2. **Select "Add" → "Reference..."**
+3. **Click "Browse..."** button at the bottom
+4. **Navigate to AutoCAD installation directory:**
+   - **AutoCAD 2024**: `C:\Program Files\Autodesk\AutoCAD 2024\`
+   - **AutoCAD 2025**: `C:\Program Files\Autodesk\AutoCAD 2025\`
+   - **Civil 3D 2024**: `C:\Program Files\Autodesk\AutoCAD 2024\`
+   
+5. **Select `AdWindows.dll`** and click "Add"
+6. **CRITICAL: Set Copy Local to False**
+   - In Solution Explorer, expand "Dependencies" → "Assemblies"
+   - Find `AdWindows` in the list
+   - Click on it to view Properties window
+   - Set **`Copy Local`** to **`False`**
+
+#### Why Copy Local = False?
+
+- AutoCAD **already has** `AdWindows.dll` loaded in memory
+- Copying it to your output directory can cause version conflicts
+- The DLL is **always available** when your plugin runs inside AutoCAD
+- Reduces your plugin's deployment size
+
+### Manual .csproj Configuration
+
+Alternatively, you can manually edit your `.csproj` file:
+
+```xml
+<ItemGroup>
+  <!-- AutoCAD Core References -->
+  <Reference Include="acdbmgd">
+    <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acdbmgd.dll</HintPath>
+    <Private>False</Private>
+  </Reference>
+  <Reference Include="acmgd">
+    <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\acmgd.dll</HintPath>
+    <Private>False</Private>
+  </Reference>
+  
+  <!-- AdWindows for Ribbon API -->
+  <Reference Include="AdWindows">
+    <HintPath>C:\Program Files\Autodesk\AutoCAD 2024\AdWindows.dll</HintPath>
+    <Private>False</Private>
+  </Reference>
+  
+  <!-- WPF References (required for Ribbon) -->
+  <Reference Include="PresentationCore" />
+  <Reference Include="PresentationFramework" />
+  <Reference Include="WindowsBase" />
+  <Reference Include="System.Xaml" />
+</ItemGroup>
+```
+
+> [!NOTE]
+> `<Private>False</Private>` is equivalent to `Copy Local = False`
+
+### Required WPF References
+
+When using `AdWindows.dll`, you also need these WPF assemblies (they're part of .NET Framework):
+
+- **PresentationCore** - Core WPF functionality
+- **PresentationFramework** - WPF UI framework
+- **WindowsBase** - Base WPF classes
+- **System.Xaml** - XAML support
+
+These can be added via "Add Reference" → "Assemblies" → "Framework" in Visual Studio.
+
+### Troubleshooting
+
+#### "Could not load file or assembly 'AdWindows'"
+- **Cause**: DLL path is incorrect or AutoCAD version mismatch
+- **Solution**: Verify the path matches your AutoCAD installation
+
+#### "Type 'RibbonControl' is not defined"
+- **Cause**: Missing `using Autodesk.Windows;` directive
+- **Solution**: Add `using Autodesk.Windows;` at the top of your file
+
+#### Ribbon code doesn't work
+- **Cause**: Plugin might be loading before Ribbon is initialized
+- **Solution**: Delay Ribbon creation or check `ComponentManager.Ribbon != null`
+
+### Multi-Version Support
+
+If supporting multiple AutoCAD versions, use conditional compilation:
+
+```csharp
+#if ACAD2024
+    // AutoCAD 2024-specific code
+#elif ACAD2025
+    // AutoCAD 2025-specific code
+#endif
+```
+
+And define multiple build configurations in your `.csproj`:
+
+```xml
+<PropertyGroup Condition="'$(Configuration)' == 'Debug2024'">
+  <DefineConstants>ACAD2024</DefineConstants>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)' == 'Debug2025'">
+  <DefineConstants>ACAD2025</DefineConstants>
+</PropertyGroup>
+```
+
+
 ## Namespace
 `Autodesk.Windows`
 

@@ -44,9 +44,53 @@ Fundamental container classes used throughout the API.
 - [Point3dCollection](AutoCAD/Collections/Point3dCollection.md) - List of 3D points
 
 ### Geometry Classes
-Fundamental geometry classes for 3D coordinates and calculations.
+Fundamental geometry classes for 2D/3D coordinates, transformations, and geometric calculations.
 
+#### Points & Vectors
 - [Point3d](AutoCAD/Geometry/Point3d.md) - 3D point coordinates (X, Y, Z)
+- [Point2d](AutoCAD/Geometry/Point2d.md) - 2D point coordinates (X, Y)
+- [Vector3d](AutoCAD/Geometry/Vector3d.md) - 3D vector for directions and offsets
+- [Vector2d](AutoCAD/Geometry/Vector2d.md) - 2D vector for planar operations
+
+#### Transformations
+- [Matrix3d](AutoCAD/Geometry/Matrix3d.md) - 3D transformation matrix (move, rotate, scale, mirror)
+- [Matrix2d](AutoCAD/Geometry/Matrix2d.md) - 2D transformation matrix
+
+#### Lines & Rays
+- [Line3d](AutoCAD/Geometry/Line3d.md) - Unbounded line in 3D space
+- [Line2d](AutoCAD/Geometry/Line2d.md) - Unbounded line in 2D space
+- [LineSegment3d](AutoCAD/Geometry/LineSegment3d.md) - Bounded line segment in 3D
+- [LineSegment2d](AutoCAD/Geometry/LineSegment2d.md) - Bounded line segment in 2D
+- [Ray3d](AutoCAD/Geometry/Ray3d.md) - Half-bounded line in 3D (ray casting)
+- [Ray2d](AutoCAD/Geometry/Ray2d.md) - Half-bounded line in 2D
+
+#### Arcs & Circles
+- [CircularArc3d](AutoCAD/Geometry/CircularArc3d.md) - Circular arcs and full circles in 3D
+- [CircularArc2d](AutoCAD/Geometry/CircularArc2d.md) - Circular arcs and full circles in 2D
+- [EllipticalArc3d](AutoCAD/Geometry/EllipticalArc3d.md) - Elliptical arcs and full ellipses in 3D
+- [EllipticalArc2d](AutoCAD/Geometry/EllipticalArc2d.md) - Elliptical arcs and full ellipses in 2D
+
+#### NURBS & Splines
+- [NurbCurve3d](AutoCAD/Geometry/NurbCurve3d.md) - Non-uniform rational B-spline curve in 3D
+- [NurbCurve2d](AutoCAD/Geometry/NurbCurve2d.md) - Non-uniform rational B-spline curve in 2D
+- [CubicSplineCurve3d](AutoCAD/Geometry/CubicSplineCurve3d.md) - Cubic interpolation spline in 3D
+- [CubicSplineCurve2d](AutoCAD/Geometry/CubicSplineCurve2d.md) - Cubic interpolation spline in 2D
+- [Polyline3d](AutoCAD/Geometry/Polyline3d.md) - Piecewise linear spline in 3D
+- [Polyline2d](AutoCAD/Geometry/Polyline2d.md) - Piecewise linear spline in 2D
+
+#### 3D Primitives
+- [Sphere](AutoCAD/Geometry/Sphere.md) - Spherical surface
+- [Cylinder](AutoCAD/Geometry/Cylinder.md) - Cylindrical surface
+- [Cone](AutoCAD/Geometry/Cone.md) - Conical surface
+- [Torus](AutoCAD/Geometry/Torus.md) - Toroidal surface (donut shape)
+
+#### Surfaces & Utilities
+- [NurbSurface](AutoCAD/Geometry/NurbSurface.md) - NURB parametric surface
+- [Plane](AutoCAD/Geometry/Plane.md) - Infinite plane in 3D space
+- [Extents3d](AutoCAD/Geometry/Extents3d.md) - 3D bounding box
+- [Extents2d](AutoCAD/Geometry/Extents2d.md) - 2D bounding box
+- [Tolerance](AutoCAD/Geometry/Tolerance.md) - Geometric tolerance for comparisons
+
 
 ### Symbol Tables
 Collections of named objects like layers, linetypes, and text styles.
